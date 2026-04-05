@@ -10,6 +10,11 @@ repositories {
 }
 
 dependencies {
+    implementation("com.oracle.database.jdbc:ojdbc11:23.6.0.24.10")
+    implementation("com.mysql:mysql-connector-j:9.2.0")
+    implementation("org.mariadb.jdbc:mariadb-java-client:3.5.2")
+    implementation("org.postgresql:postgresql:42.7.5")
+
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
 }
