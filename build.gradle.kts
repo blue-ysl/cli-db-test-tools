@@ -22,3 +22,13 @@ dependencies {
 tasks.test {
     useJUnitPlatform()
 }
+
+tasks.jar {
+    archiveFileName.set("cli-db-tools.jar")
+    manifest {
+        attributes(
+            "Main-Class" to "Main",
+            "Implementation-Version" to "0.1.1"
+        )
+    }
+}
