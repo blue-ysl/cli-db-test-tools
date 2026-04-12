@@ -1,4 +1,4 @@
-package prompt;
+package com.clidb.prompt;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -47,17 +47,17 @@ public class Prompter
 
     private List<Field> collectClassFields(Class<?> clazz)
     {
-        List<Class<?>> hierarchy = new ArrayList<>();
+        List<Class<?>> classChain = new ArrayList<>();
         Class<?> current = clazz;
 
         while (current != null && current != Object.class)
         {
-            hierarchy.add(0, current);
+            classChain.addFirst(current);
             current = current.getSuperclass();
         }
 
         List<Field> fields = new ArrayList<>();
-        for (Class<?> c : hierarchy)
+        for (Class<?> c : classChain)
         {
             for (Field field : c.getDeclaredFields())
             {
