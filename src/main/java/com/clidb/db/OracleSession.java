@@ -8,13 +8,13 @@ public class OracleSession extends DbSession
     }
 
     private final OracleConnectType connectType;
-    private final String connectId;
+    private final String dbName;
 
-    public OracleSession(String host, int port, String databaseName, String username, String password, OracleConnectType connectType, String connectId)
+    public OracleSession(String host, int port, String username, String password, OracleConnectType connectType, String dbName)
     {
-        super(host, port, databaseName, username, password);
+        super(DbmsType.ORACLE, host, port, username, password);
         this.connectType = connectType;
-        this.connectId = connectId;
+        this.dbName = dbName;
     }
 
     public OracleConnectType getOracleConnectType()
@@ -22,9 +22,9 @@ public class OracleSession extends DbSession
         return connectType;
     }
 
-    public String getConnectId()
+    public String getDbName()
     {
-        return connectId;
+        return dbName;
     }
 
     @Override
@@ -32,11 +32,11 @@ public class OracleSession extends DbSession
     {
         if (connectType == OracleConnectType.SERVICE_NAME)
         {
-            return "jdbc:oracle:thin:@//" + host + ":" + port + "/" + connectId;
+            return "jdbc:oracle:thin:@//" + host + ":" + port + "/" + dbName;
         }
         else
         {
-            return "jdbc:oracle:thin:@" + host + ":" + port + ":" + connectId;
+            return "jdbc:oracle:thin:@" + host + ":" + port + ":" + dbName;
         }
     }
 }
