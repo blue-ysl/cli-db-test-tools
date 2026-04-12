@@ -117,7 +117,7 @@ public class Prompter
         return input;
     }
 
-    private Object getEnumChoiceOrNull(String enumName, Object[] enumConstants)
+    public Object getEnumChoiceOrNull(String enumName, Object[] enumConstants)
     {
         System.out.println("Choose " + enumName + ":");
         for (int i = 0; i < enumConstants.length; i++)
