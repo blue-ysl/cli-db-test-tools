@@ -1,12 +1,19 @@
 package db;
 
+import prompt.SkipPrompt;
+
+import java.time.LocalDateTime;
+
 public abstract class DbSession
 {
+    protected DbmsType dbmsType;
     protected String host;
     protected int port;
     protected String databaseName;
     protected String username;
     protected String password;
+    @SkipPrompt
+    protected LocalDateTime createdTime;
 
     public DbSession(String host, int port, String databaseName, String username, String password)
     {

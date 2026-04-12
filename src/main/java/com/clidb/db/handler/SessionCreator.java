@@ -6,6 +6,7 @@ import db.MySqlSession;
 import db.OracleSession;
 import db.OracleSession.OracleConnectType;
 import db.PostgresSession;
+import prompt.Prompter;
 
 import java.io.IOException;
 import java.util.Map;
@@ -24,7 +25,7 @@ public class SessionCreator
     {
         try
         {
-            Map<String, Object> values = prompter.prompt(OracleSession.class);
+            Map<String, Object> values = prompter.getObjectValuesOrNull(OracleSession.class);
             return Optional.of(new OracleSession(
                     (String) values.get("host"),
                     (int) values.get("port"),
@@ -35,7 +36,7 @@ public class SessionCreator
                     (String) values.get("connectId")
             ));
         }
-        catch (IOException | RuntimeException e)
+        catch (RuntimeException e)
         {
             System.err.println("Failed to create session: " + e.getMessage());
             return Optional.empty();
@@ -46,7 +47,7 @@ public class SessionCreator
     {
         try
         {
-            Map<String, Object> values = prompter.prompt(MySqlSession.class);
+            Map<String, Object> values = prompter.getObjectValuesOrNull(MySqlSession.class);
             return Optional.of(new MySqlSession(
                     (String) values.get("host"),
                     (int) values.get("port"),
@@ -56,7 +57,7 @@ public class SessionCreator
                     (boolean) values.get("useSSL")
             ));
         }
-        catch (IOException | RuntimeException e)
+        catch (RuntimeException e)
         {
             System.err.println("Failed to create session: " + e.getMessage());
             return Optional.empty();
@@ -67,7 +68,7 @@ public class SessionCreator
     {
         try
         {
-            Map<String, Object> values = prompter.prompt(MariaDbSession.class);
+            Map<String, Object> values = prompter.getObjectValuesOrNull(MariaDbSession.class);
             return Optional.of(new MariaDbSession(
                     (String) values.get("host"),
                     (int) values.get("port"),
@@ -77,7 +78,7 @@ public class SessionCreator
                     (boolean) values.get("useCompression")
             ));
         }
-        catch (IOException | RuntimeException e)
+        catch (RuntimeException e)
         {
             System.err.println("Failed to create session: " + e.getMessage());
             return Optional.empty();
@@ -88,7 +89,7 @@ public class SessionCreator
     {
         try
         {
-            Map<String, Object> values = prompter.prompt(PostgresSession.class);
+            Map<String, Object> values = prompter.getObjectValuesOrNull(PostgresSession.class);
             return Optional.of(new PostgresSession(
                     (String) values.get("host"),
                     (int) values.get("port"),
@@ -98,7 +99,7 @@ public class SessionCreator
                     (String) values.get("schema")
             ));
         }
-        catch (IOException | RuntimeException e)
+        catch (RuntimeException e)
         {
             System.err.println("Failed to create session: " + e.getMessage());
             return Optional.empty();
