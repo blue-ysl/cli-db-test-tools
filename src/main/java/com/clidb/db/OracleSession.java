@@ -1,4 +1,4 @@
-package db;
+package com.clidb.db;
 
 public class OracleSession extends DbSession
 {

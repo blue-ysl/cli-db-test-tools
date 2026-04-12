@@ -1,3 +1,5 @@
+package com.clidb.db;
+
 public enum DbmsType
 {
     ORACLE("Oracle"),

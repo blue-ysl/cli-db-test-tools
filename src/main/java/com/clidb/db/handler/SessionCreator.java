@@ -1,14 +1,13 @@
-package db.handler;
+package com.clidb.db.handler;
 
-import db.DbSession;
-import db.MariaDbSession;
-import db.MySqlSession;
-import db.OracleSession;
-import db.OracleSession.OracleConnectType;
-import db.PostgresSession;
+import com.clidb.db.DbSession;
+import com.clidb.db.MariaDbSession;
+import com.clidb.db.MySqlSession;
+import com.clidb.db.OracleSession;
+import com.clidb.db.OracleSession.OracleConnectType;
+import com.clidb.db.PostgresSession;
 import prompt.Prompter;
 
-import java.io.IOException;
 import java.util.Map;
 import java.util.Optional;
 
