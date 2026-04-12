@@ -39,13 +39,20 @@ public abstract class DbSession
     public abstract String getConnectionUrl();
     public boolean testConnection()
     {
+        System.out.println("DEBUG: Test Connection with the URL [" + getConnectionUrl() + "]");
         try (Connection conn = DriverManager.getConnection(getConnectionUrl(), username, password))
         {
-            return conn.isValid(3);
+            boolean connValid = conn.isValid(3);
+            if (connValid)
+            {
+                System.out.println("DEBUG: Test Connection is valid");
+            }
+
+            return connValid;
         }
-        catch (SQLException e)
+        catch (Exception e)
         {
-            System.err.println("Connection test failed: " + e.getMessage());
+            System.err.println("DEBUG: Connection test failed: " + e.getMessage());
             return false;
         }
     }
