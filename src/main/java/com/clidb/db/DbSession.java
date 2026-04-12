@@ -1,6 +1,6 @@
 package com.clidb.db;
 
-import prompt.SkipPrompt;
+import com.clidb.prompt.SkipPrompt;
 
 import java.time.LocalDateTime;
 
@@ -15,13 +15,15 @@ public abstract class DbSession
     @SkipPrompt
     protected LocalDateTime createdTime;
 
-    public DbSession(String host, int port, String databaseName, String username, String password)
+    public DbSession(DbmsType dbmsType, String host, int port, String databaseName, String username, String password)
     {
+        this.dbmsType = dbmsType;
         this.host = host;
         this.port = port;
         this.databaseName = databaseName;
         this.username = username;
         this.password = password;
+        this.createdTime = LocalDateTime.now();
     }
 
     public String getHost() { return host; }
