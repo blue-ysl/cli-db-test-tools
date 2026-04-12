@@ -2,7 +2,7 @@ package com.clidb.db;
 
 import com.clidb.prompt.SkipPrompt;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 public abstract class DbSession
 {
@@ -13,7 +13,7 @@ public abstract class DbSession
     protected String username;
     protected String password;
     @SkipPrompt
-    protected LocalDateTime createdTime;
+    protected Instant createdTime;
 
     public DbSession(DbmsType dbmsType, String host, int port, String databaseName, String username, String password)
     {
@@ -23,7 +23,7 @@ public abstract class DbSession
         this.databaseName = databaseName;
         this.username = username;
         this.password = password;
-        this.createdTime = LocalDateTime.now();
+        this.createdTime = Instant.now();
     }
 
     public String getHost() { return host; }
@@ -31,6 +31,7 @@ public abstract class DbSession
     public String getDatabaseName() { return databaseName; }
     public String getUsername() { return username; }
     public String getPassword() { return password; }
+    public Instant getCreatedTime() {return createdTime; }
 
     public abstract String getConnectionUrl();
 }
